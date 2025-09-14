@@ -27,7 +27,7 @@ export function Navbar({ onFormSelect }: NavbarProps) {
               </Button>
             </Link>
 
-            <DropdownMenu>
+            {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-foreground hover:text-primary">
                   Forms <ChevronDown className="ml-1 w-4 h-4" />
@@ -41,7 +41,7 @@ export function Navbar({ onFormSelect }: NavbarProps) {
                   GAD-7 Anxiety Screen
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
           </div>
         </div>
       </div>
