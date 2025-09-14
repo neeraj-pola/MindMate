@@ -26,10 +26,11 @@ export function AboutUs() {
     {
       name: "Somesh Rajendra Bhandarkar",
       img: "/images/somesh.JPG",
-      desc: "I'm Somesh Rajendra Bhandarkar, a Master's student in Data Science at the University at Buffalo.\
-      I'm passionate about working with data to uncover meaningful insights, with a strong interest in data engineering—building\
-       scalable pipelines and efficient storage systems. I also enjoy exploring machine learning, retrieval-augmented generation (RAG), \
-       and generative AI, where I see exciting potential to solve real-world challenges.",
+      desc: "I am Somesh Rajendra Bhandarkar, a Data Engineer and Machine Learning enthusiast with expertise in designing scalable data pipelines, \
+      cloud-based ETL workflows, and big data processing. Skilled in Python, SQL, PySpark, and cloud platforms like AWS, GCP, and Databricks, \
+      I specialize in building efficient, production-ready data systems. With additional experience in machine learning, deep learning, and \
+      Retrieval-Augmented Generation (RAG), I am passionate about leveraging data engineering foundations to enable intelligent analytics and real-world \
+      AI applications.",
       github: "https://github.com/SomeshBhandarkar",
       linkedin: "https://www.linkedin.com/in/someshrb7/",
     },
