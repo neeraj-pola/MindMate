@@ -12,8 +12,9 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-@lru_cache(maxsize=1)
+
 def get_db():
+    """Always return a fresh DB connection (avoids idle disconnect issues)."""
     return pymysql.connect(
         host=os.getenv("TIDB_HOST"),
         port=int(os.getenv("TIDB_PORT")),
@@ -24,9 +25,12 @@ def get_db():
         autocommit=True,
     )
 
+
 @lru_cache(maxsize=1)
 def get_embeddings():
+    """Cache embeddings object (heavy init)."""
     return OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=OPENAI_API_KEY)
+
 
 def search_tidb(query: str, top_k: int = 3):
     """Return top_k chunk texts using cosine similarity in Python."""
@@ -35,9 +39,13 @@ def search_tidb(query: str, top_k: int = 3):
     q = np.array(q_emb, dtype=np.float32)
 
     conn = get_db()
-    with conn.cursor() as cursor:
-        cursor.execute("SELECT id, content, embedding FROM rag_chunks;")
-        rows = cursor.fetchall()
+    try:
+        conn.ping(reconnect=True)  # ensure active
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT id, content, embedding FROM rag_chunks;")
+            rows = cursor.fetchall()
+    finally:
+        conn.close()
 
     scored = []
     for r_id, r_text, r_emb_bytes in rows:
@@ -48,6 +56,7 @@ def search_tidb(query: str, top_k: int = 3):
 
     scored.sort(key=lambda x: x[0], reverse=True)
     return [text for _, text in scored[:top_k]]
+
 
 def ask_rag(user_question: str) -> str:
     """Use retrieved context + OpenAI to answer."""
