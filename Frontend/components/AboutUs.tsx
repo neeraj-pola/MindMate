@@ -25,7 +25,7 @@ export function AboutUs() {
     },
     {
       name: "Somesh Rajendra Bhandarkar",
-      img: "/images/somesh.jpg",
+      img: "/images/somesh.JPG",
       desc: "I'm Somesh Rajendra Bhandarkar, a Master's student in Data Science at the University at Buffalo.\
       I'm passionate about working with data to uncover meaningful insights, with a strong interest in data engineering—building\
        scalable pipelines and efficient storage systems. I also enjoy exploring machine learning, retrieval-augmented generation (RAG), \
