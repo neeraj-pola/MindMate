@@ -1,8 +1,9 @@
 "use client"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ChevronDown, Brain } from "lucide-react"
-
+import { FaChevronDown, FaBrain } from "react-icons/fa"
 interface NavbarProps {
   onFormSelect: (form: "phq9" | "gad7") => void
 }
@@ -20,9 +21,11 @@ export function Navbar({ onFormSelect }: NavbarProps) {
           </div>
 
           <div className="flex items-center space-x-6">
-            <Button variant="ghost" className="text-foreground hover:text-primary">
-              About Us
-            </Button>
+          <Link href="/about">
+              <Button variant="ghost" className="text-foreground hover:text-primary">
+                About Us
+              </Button>
+            </Link>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
